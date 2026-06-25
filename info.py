@@ -1,17 +1,5 @@
 import json
 
-"""
-SETUP:
-Colleague's setup (5 steps)
-
-1. In the Unity project, create Assets/StreamingAssets/ if it doesn't exist
-2. Drop assets.json into that folder
-3. Add AssetInfoLoader.cs to any always-present GameObject (e.g. GameManager)
-4. Add AssetInfoPanel.cs to the info panel GameObject and wire the TMP_Text fields in the Inspector
-5. From a clickable object's click handler, call: infoPanel.ShowAsset("asset_001")
-
-"""
-
 CATEGORIES = ["Seating", "Tables", "Storage", "Lighting", "Decor", "Flooring"]
 
 # Avatar dummy data — synthetic body measurements for testing UI layout.
@@ -177,11 +165,12 @@ ASSETS = [
     },
 ]
 
+def generate_catalogue(assets = ASSETS, avatars = AVATARS):
 
-def generate_catalogue(assets=ASSETS, avatars=AVATARS):
     asset_list = []
     for i, asset in enumerate(assets):
         asset_list.append({"id": f"asset_{i + 1:03d}", **asset})
+
     return {
         "version": "1.0",
         "asset_count": len(asset_list),
@@ -190,10 +179,11 @@ def generate_catalogue(assets=ASSETS, avatars=AVATARS):
         "avatars": avatars,
     }
 
-
 def preview_avatars():
+
     print(f"{'ID':<12} {'Label':<10} {'Height':>8} {'Shoulders':>10} {'Chest':>7} {'Waist':>7} {'Hips':>7} {'Inseam':>8} {'Arm':>6}")
     print("-" * 80)
+
     for a in AVATARS:
         print(
             f"{a['id']:<12} {a['label']:<10}"
@@ -206,12 +196,10 @@ def preview_avatars():
             f" {a['armLength_cm']:>5}cm"
         )
 
-
 if __name__ == "__main__":
     import sys
 
-    if "--preview" in sys.argv:
-        preview_avatars()
+    if "--preview" in sys.argv: preview_avatars()
     else:
         catalogue = generate_catalogue()
 
