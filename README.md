@@ -8,8 +8,9 @@ Generates a dummy JSON catalogue of mall assets and avatar body measurements for
 
 | File | Purpose |
 |------|---------|
-| `info.py` | Generates `assets.json` from hardcoded dummy data |
-| `assets.json` | The data file Unity reads at runtime |
+| `info.py` | Generates `assets.json` and `avatars.json` from hardcoded dummy data |
+| `avatars.json` | Avatar body measurements only — use this for current Unity integration |
+| `assets.json` | Full catalogue (assets + avatars combined) — for later use |
 | `AssetInfoLoader.cs` | Unity component — loads `assets.json` on Start |
 | `AssetInfoPanel.cs` | Unity component — binds asset fields to UI Text elements |
 
@@ -21,7 +22,8 @@ Requires Python 3 (no dependencies).
 
 ```bash
 python3 info.py
-# → assets.json
+# → avatars.json  (avatar data only — use this for now)
+# → assets.json   (full catalogue, for later)
 ```
 
 Run this whenever the schema changes or you want to refresh dummy data.
@@ -32,13 +34,13 @@ Run this whenever the schema changes or you want to refresh dummy data.
 
 ### 2.1 Place the data file
 
-Copy `assets.json` into your Unity project at:
+For now, copy `avatars.json` into your Unity project at:
 
 ```
-Assets/StreamingAssets/assets.json
+Assets/StreamingAssets/avatars.json
 ```
 
-Create the `StreamingAssets` folder if it doesn't exist. Unity will copy it alongside the build automatically on all platforms.
+Create the `StreamingAssets` folder if it doesn't exist. Unity will copy it alongside the build automatically on all platforms. When the full asset catalogue is ready, `assets.json` will be added here too.
 
 ### 2.2 Add the loader
 

@@ -191,13 +191,34 @@ def generate_catalogue(assets=ASSETS, avatars=AVATARS):
     }
 
 
+def preview_avatars():
+    print(f"{'ID':<12} {'Label':<10} {'Height':>8} {'Shoulders':>10} {'Chest':>7} {'Waist':>7} {'Hips':>7} {'Inseam':>8} {'Arm':>6}")
+    print("-" * 80)
+    for a in AVATARS:
+        print(
+            f"{a['id']:<12} {a['label']:<10}"
+            f" {a['height_cm']:>7}cm"
+            f" {a['shoulderWidth_cm']:>9}cm"
+            f" {a['chest_cm']:>6}cm"
+            f" {a['waist_cm']:>6}cm"
+            f" {a['hips_cm']:>6}cm"
+            f" {a['inseam_cm']:>7}cm"
+            f" {a['armLength_cm']:>5}cm"
+        )
+
+
 if __name__ == "__main__":
-    catalogue = generate_catalogue()
+    import sys
 
-    with open("assets.json", "w") as f:
-        json.dump(catalogue, f, indent=2)
-    print(f"Generated {catalogue['asset_count']} assets + {catalogue['avatar_count']} avatars → assets.json")
+    if "--preview" in sys.argv:
+        preview_avatars()
+    else:
+        catalogue = generate_catalogue()
 
-    with open("avatars.json", "w") as f:
-        json.dump({"version": "1.0", "avatars": AVATARS}, f, indent=2)
-    print(f"Generated {len(AVATARS)} avatars → avatars.json")
+        with open("assets.json", "w") as f:
+            json.dump(catalogue, f, indent=2)
+        print(f"Generated {catalogue['asset_count']} assets + {catalogue['avatar_count']} avatars → assets.json")
+
+        with open("avatars.json", "w") as f:
+            json.dump({"version": "1.0", "avatars": AVATARS}, f, indent=2)
+        print(f"Generated {len(AVATARS)} avatars → avatars.json")
