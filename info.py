@@ -14,6 +14,66 @@ Colleague's setup (5 steps)
 
 CATEGORIES = ["Seating", "Tables", "Storage", "Lighting", "Decor", "Flooring"]
 
+# Avatar dummy data — synthetic body measurements for testing UI layout.
+# Units: height/inseam/armLength in cm (lengths), all others in cm (circumferences).
+AVATARS = [
+    {
+        "id": "avatar_001",
+        "label": "Adult S",
+        "height_cm": 162,
+        "shoulderWidth_cm": 37,
+        "chest_cm": 86,
+        "waist_cm": 68,
+        "hips_cm": 92,
+        "inseam_cm": 74,
+        "armLength_cm": 57,
+    },
+    {
+        "id": "avatar_002",
+        "label": "Adult M",
+        "height_cm": 170,
+        "shoulderWidth_cm": 41,
+        "chest_cm": 96,
+        "waist_cm": 78,
+        "hips_cm": 100,
+        "inseam_cm": 79,
+        "armLength_cm": 60,
+    },
+    {
+        "id": "avatar_003",
+        "label": "Adult L",
+        "height_cm": 175,
+        "shoulderWidth_cm": 46,
+        "chest_cm": 108,
+        "waist_cm": 92,
+        "hips_cm": 112,
+        "inseam_cm": 81,
+        "armLength_cm": 63,
+    },
+    {
+        "id": "avatar_004",
+        "label": "Adult XL",
+        "height_cm": 178,
+        "shoulderWidth_cm": 50,
+        "chest_cm": 120,
+        "waist_cm": 106,
+        "hips_cm": 124,
+        "inseam_cm": 82,
+        "armLength_cm": 65,
+    },
+    {
+        "id": "avatar_005",
+        "label": "Teen",
+        "height_cm": 152,
+        "shoulderWidth_cm": 34,
+        "chest_cm": 78,
+        "waist_cm": 62,
+        "hips_cm": 82,
+        "inseam_cm": 68,
+        "armLength_cm": 53,
+    },
+]
+
 ASSETS = [
     {
         "name": "Oak Dining Chair",
@@ -118,20 +178,26 @@ ASSETS = [
 ]
 
 
-def generate_catalogue(assets=ASSETS):
-    catalogue = []
+def generate_catalogue(assets=ASSETS, avatars=AVATARS):
+    asset_list = []
     for i, asset in enumerate(assets):
-        entry = {
-            "id": f"asset_{i + 1:03d}",
-            **asset,
-        }
-        catalogue.append(entry)
-    return {"version": "1.0", "asset_count": len(catalogue), "assets": catalogue}
+        asset_list.append({"id": f"asset_{i + 1:03d}", **asset})
+    return {
+        "version": "1.0",
+        "asset_count": len(asset_list),
+        "avatar_count": len(avatars),
+        "assets": asset_list,
+        "avatars": avatars,
+    }
 
 
 if __name__ == "__main__":
     catalogue = generate_catalogue()
-    output_path = "assets.json"
-    with open(output_path, "w") as f:
+
+    with open("assets.json", "w") as f:
         json.dump(catalogue, f, indent=2)
-    print(f"Generated {catalogue['asset_count']} assets → {output_path}")
+    print(f"Generated {catalogue['asset_count']} assets + {catalogue['avatar_count']} avatars → assets.json")
+
+    with open("avatars.json", "w") as f:
+        json.dump({"version": "1.0", "avatars": AVATARS}, f, indent=2)
+    print(f"Generated {len(AVATARS)} avatars → avatars.json")

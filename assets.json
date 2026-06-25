@@ -1,6 +1,7 @@
 {
   "version": "1.0",
   "asset_count": 10,
+  "avatar_count": 5,
   "assets": [
     {
       "id": "asset_001",
@@ -151,6 +152,63 @@
       "description": "Adjustable arc floor lamp in brushed brass with fabric shade.",
       "sku": "LIT-BRS-002",
       "price_aud": 449
+    }
+  ],
+  "avatars": [
+    {
+      "id": "avatar_001",
+      "label": "Adult S",
+      "height_cm": 162,
+      "shoulderWidth_cm": 37,
+      "chest_cm": 86,
+      "waist_cm": 68,
+      "hips_cm": 92,
+      "inseam_cm": 74,
+      "armLength_cm": 57
+    },
+    {
+      "id": "avatar_002",
+      "label": "Adult M",
+      "height_cm": 170,
+      "shoulderWidth_cm": 41,
+      "chest_cm": 96,
+      "waist_cm": 78,
+      "hips_cm": 100,
+      "inseam_cm": 79,
+      "armLength_cm": 60
+    },
+    {
+      "id": "avatar_003",
+      "label": "Adult L",
+      "height_cm": 175,
+      "shoulderWidth_cm": 46,
+      "chest_cm": 108,
+      "waist_cm": 92,
+      "hips_cm": 112,
+      "inseam_cm": 81,
+      "armLength_cm": 63
+    },
+    {
+      "id": "avatar_004",
+      "label": "Adult XL",
+      "height_cm": 178,
+      "shoulderWidth_cm": 50,
+      "chest_cm": 120,
+      "waist_cm": 106,
+      "hips_cm": 124,
+      "inseam_cm": 82,
+      "armLength_cm": 65
+    },
+    {
+      "id": "avatar_005",
+      "label": "Teen",
+      "height_cm": 152,
+      "shoulderWidth_cm": 34,
+      "chest_cm": 78,
+      "waist_cm": 62,
+      "hips_cm": 82,
+      "inseam_cm": 68,
+      "armLength_cm": 53
     }
   ]
 }

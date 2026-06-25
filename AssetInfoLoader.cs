@@ -20,7 +20,7 @@ public class AssetInfoLoader : MonoBehaviour
 
         string json = File.ReadAllText(path);
         Catalogue = JsonUtility.FromJson<AssetCatalogue>(json);
-        Debug.Log($"[AssetInfoLoader] Loaded {Catalogue.asset_count} assets.");
+        Debug.Log($"[AssetInfoLoader] Loaded {Catalogue.asset_count} assets, {Catalogue.avatar_count} avatars.");
     }
 }
 
@@ -31,7 +31,9 @@ public class AssetCatalogue
 {
     public string version;
     public int asset_count;
+    public int avatar_count;
     public List<AssetEntry> assets;
+    public List<AvatarEntry> avatars;
 }
 
 [Serializable]
@@ -54,4 +56,21 @@ public class AssetDimensions
     public float height_cm;
     public float width_cm;
     public float depth_cm;
+}
+
+[Serializable]
+public class AvatarEntry
+{
+    public string id;
+    public string label;
+    // lengths (floor-to-point)
+    public float height_cm;
+    public float inseam_cm;
+    public float armLength_cm;
+    // straight-line distance
+    public float shoulderWidth_cm;
+    // circumferences
+    public float chest_cm;
+    public float waist_cm;
+    public float hips_cm;
 }
