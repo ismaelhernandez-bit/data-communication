@@ -1,5 +1,17 @@
 import json
 
+"""
+SETUP:
+Colleague's setup (5 steps)
+
+1. In the Unity project, create Assets/StreamingAssets/ if it doesn't exist
+2. Drop assets.json into that folder
+3. Add AssetInfoLoader.cs to any always-present GameObject (e.g. GameManager)
+4. Add AssetInfoPanel.cs to the info panel GameObject and wire the TMP_Text fields in the Inspector
+5. From a clickable object's click handler, call: infoPanel.ShowAsset("asset_001")
+
+"""
+
 CATEGORIES = ["Seating", "Tables", "Storage", "Lighting", "Decor", "Flooring"]
 
 ASSETS = [
